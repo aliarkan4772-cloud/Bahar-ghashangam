@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void onStop() {
+    protected void onStop() {
         if (player != null) {
             try {
                 player.stop();
