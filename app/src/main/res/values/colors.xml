@@ -3,6 +3,7 @@
 <resources>
     <color name="bg_dark">#0E1720</color>
     <color name="surface">#16222E</color>
+    <color name="surface2">#1E2D3D</color>
     <color name="teal">#2DD4BF</color>
     <color name="teal_dark">#0F766E</color>
     <color name="text_primary">#E6F1F5</color>
