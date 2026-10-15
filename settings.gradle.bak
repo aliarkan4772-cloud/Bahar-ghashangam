@@ -1,0 +1,19 @@
+// settings.gradle — تنظیمات ریشهٔ پروژهٔ Gradle
+// این فایل مشخص می‌کند کدام ماژول‌ها بخشی از build هستند.
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "PersianPocketTTS"
+include ':app'

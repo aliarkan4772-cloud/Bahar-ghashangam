@@ -1,0 +1,55 @@
+// app/build.gradle — پیکربندی ماژول اپلیکیشن
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.pockettts.persian'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.pockettts.persian"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        // فقط معماری‌های رایج اندروید؛ ONNX Runtime برای arm64 و x86_64 بسته می‌شود
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86_64'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    // فایل‌های .onnx و .wav فشرده نشوند تا مستقیماً از assets خوانده شوند
+    androidResources {
+        noCompress 'onnx', 'wav'
+    }
+
+    packaging {
+        resources {
+            excludes += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE*']
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // ONNX Runtime برای اندروید — موتور اجرای مدل‌های flow_lm و mimi
+    implementation 'com.microsoft.onnxruntime:onnxruntime-android:1.17.0'
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- strings.xml — رشته‌های رابط کاربری (فارسی) -->
+<resources>
+    <string name="app_name">پاکت TTS فارسی</string>
+    <string name="hint_input">متن فارسی را اینجا بنویسید…</string>
+    <string name="btn_speak">تبدیل به گفتار</string>
+    <string name="btn_play">پخش</string>
+    <string name="btn_stop">توقف</string>
+    <string name="btn_benchmark">مقایسهٔ سری و موازی</string>
+    <string name="label_parallel">حالت موازی (ExecutorService)</string>
+    <string name="label_threads">تعداد thread: ۴</string>
+    <string name="status_idle">آماده</string>
+    <string name="status_loading">در حال بارگذاری مدل‌ها…</string>
+    <string name="status_generating">در حال تولید صدا…</string>
+    <string name="status_benchmark">در حال اجرای مقایسه…</string>
+    <string name="status_done">صدا آماده شد</string>
+    <string name="status_error">خطا</string>
+    <string name="status_lut_error">خطای LUT — lut_weight.npy</string>
+    <string name="msg_empty_text">لطفاً یک متن فارسی وارد کنید.</string>
+    <string name="msg_engine_not_ready">مدل‌ها هنوز آماده نیستند.</string>
+    <string name="msg_generate_first">ابتدا صدا را تولید کنید.</string>
+</resources>

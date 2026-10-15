@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- activity_main.xml — رابط کاربری: ورودی متن، حالت موازی، پخش -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/teal"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:background="@color/surface"
+            android:gravity="top|start"
+            android:hint="@string/hint_input"
+            android:inputType="textMultiLine"
+            android:padding="14dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:textDirection="rtl"
+            android:textSize="16sp" />
+
+        <!-- ── بخش حالت موازی ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/surface"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <Switch
+                android:id="@+id/switchParallel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/label_parallel"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/threadLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/label_threads"
+                android:textColor="@color/teal"
+                android:textDirection="rtl"
+                android:textSize="14sp" />
+
+            <SeekBar
+                android:id="@+id/seekThreads"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:max="7"
+                android:progress="3" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSpeak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/teal"
+            android:text="@string/btn_speak"
+            android:textColor="@color/bg_dark"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnBenchmark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/surface2"
+            android:text="@string/btn_benchmark"
+            android:textColor="@color/text_primary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnPlay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:backgroundTint="@color/teal_dark"
+                android:text="@string/btn_play"
+                android:textColor="@color/text_primary" />
+
+            <Button
+                android:id="@+id/btnStop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:backgroundTint="@color/surface"
+                android:text="@string/btn_stop"
+                android:textColor="@color/text_primary" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/status_idle"
+            android:textColor="@color/text_secondary"
+            android:textDirection="rtl"
+            android:textSize="14sp" />
+
+        <!-- ── نمایش زمان سری/موازی ── -->
+        <TextView
+            android:id="@+id/timingText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/surface"
+            android:fontFamily="monospace"
+            android:padding="12dp"
+            android:textColor="@color/teal"
+            android:textDirection="rtl"
+            android:textSize="13sp" />
+    </LinearLayout>
+</ScrollView>

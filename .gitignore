@@ -1,0 +1,15 @@
+# .gitignore — فایل‌های تولیدشده و مدل‌های حجیم
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build
+/app/build
+/captures
+.externalNativeBuild
+.cxx
+
+# مدل‌های ONNX و صدای مرجع (حجیم — جداگانه توزیع شوند)
+app/src/main/assets/models/*.onnx
+app/src/main/assets/models/*.wav

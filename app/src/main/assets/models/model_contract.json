@@ -1,0 +1,19 @@
+{
+  "_comment": "قرارداد مدل Pocket-TTS فارسی — این فایل منبع حقیقت برای ابعاد است. مقدار text_dim باید با Dims.TEXT_DIM در Java و با --dim در tools/make_fixtures.py یکی باشد.",
+  "_generated_by": "tools/make_fixtures.py",
+  "sample_rate": 24000,
+  "cap": 384,
+  "temperature": 0.3,
+  "voice_off": 64,
+  "frame_rate": 12.5,
+  "text_dim": 64,
+  "latent_dim": 512,
+  "lut_file": "lut_weight.npy",
+  "lut_vocab": 50257,
+  "lut_shape": [
+    50257,
+    64
+  ],
+  "lut_dtype": "float32",
+  "_note_text_dim": "مقدار درست text_dim برای این مدل ۶۴ است. فایل lut_weight.npy باید ابعاد [50257 x 64] داشته باشد؛ اگر با --dim 1024 ساخته شود (۲۰۵ مگابایت)، LutEmbedding آن را رد می‌کند."
+}

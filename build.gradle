@@ -1,0 +1,9 @@
+// build.gradle (ریشه) — پیکربندی مشترک همهٔ ماژول‌ها
+// نسخهٔ پلاگین‌ها اینجا متمرکز شده تا در ماژول‌ها فقط apply شوند.
+plugins {
+    id 'com.android.application' version '8.5.2' apply false
+}
+
+tasks.register('clean', Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- colors.xml — پالت رنگ تم تیره/فیروزه‌ای -->
+<resources>
+    <color name="bg_dark">#0E1720</color>
+    <color name="surface">#16222E</color>
+    <color name="teal">#2DD4BF</color>
+    <color name="teal_dark">#0F766E</color>
+    <color name="text_primary">#E6F1F5</color>
+    <color name="text_secondary">#8FA6B2</color>
+    <color name="error">#F87171</color>
+</resources>
