@@ -51,5 +51,5 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // ONNX Runtime برای اندروید — موتور اجرای مدل‌های flow_lm و mimi
-    implementation 'com.microsoft.onnxruntime:onnxruntime-android:1.17.0'
+    implementation 'com.microsoft.onnxruntime:onnxruntime-android:1.19.2'
 }
