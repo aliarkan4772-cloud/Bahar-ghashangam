@@ -3,7 +3,12 @@ package com.pockettts.persian;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 import android.os.Looper;
+import android.provider.Settings;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -88,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
             @Override public void onStopTrackingTouch(SeekBar sb) { }
         });
 
-        Path modelDir = new File(getFilesDir(), "models").toPath();
+        Path modelDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS), "models").toPath();
 
         btnSpeak.setOnClickListener(v -> onSpeak(modelDir));
         btnBenchmark.setOnClickListener(v -> onBenchmark(modelDir));
@@ -99,7 +105,23 @@ public class MainActivity extends AppCompatActivity {
         setStatus(getString(R.string.status_loading));
         executor.execute(() -> {
             try {
-                // ۱) استخراج فایل‌های مدل از assets به حافظهٔ داخلی (یک‌بار)
+                // ۰) بررسی دسترسی به حافظهٔ خارجی (اندروید ۱۱+)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
+                        && !Environment.isExternalStorageManager()) {
+                    ui.post(() -> {
+                        setStatus("برای خواندن مدل‌ها از Downloads، دسترسی «همه فایل‌ها» لازم است. در صفحهٔ باز شده این دسترسی را فعال کنید و اپ را دوباره باز کنید.");
+                        try {
+                            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                            intent.setData(Uri.parse("package:" + getPackageName()));
+                            startActivity(intent);
+                        } catch (Exception ex) {
+                            System.err.println("cannot open settings: " + ex.getMessage());
+                        }
+                    });
+                    return;
+                }
+
+                // ۱) استخراج reference_01.wav از assets
                 extractModelsFromAssets(modelDir);
 
                 // ۲) ساخت موتور و بارگذاری جدول embedding توکن‌ها (lut_weight.npy)
@@ -107,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 // نکته: پیش‌تر خطای LUT فقط در console چاپ می‌شد و کاربر در اپ
                 // پیام واضحی نمی‌دید. حالا خطا هم چاپ می‌شود و هم در UI نشان داده می‌شود.
                 try {
-                    engine.loadLutFromAssets(getAssets(), Dims.LUT_ASSET);
+                    engine.loadLut(modelDir.resolve("lut_weight.npy"));
                 } catch (Exception le) {
                     final String lutError = le.getMessage();
                     System.err.println("[MainActivity] LUT بارگذاری نشد: " + lutError);
@@ -134,10 +156,8 @@ public class MainActivity extends AppCompatActivity {
         if (!Files.exists(modelDir)) {
             Files.createDirectories(modelDir);
         }
-        String[] names = {
-                "flow_lm_step.onnx", "mimi_decoder_step_kv.onnx", "mimi_encoder.onnx",
-                "reference_01.wav", "lut_weight.npy", "model_contract.json"
-        };
+        // بقیهٔ فایل‌های مدل از قبل در Downloads/models قرار دارند؛ فقط reference_01.wav را استخراج می‌کنیم.
+        String[] names = { "reference_01.wav" };
         for (String name : names) {
             Path dst = modelDir.resolve(name);
             if (Files.exists(dst)) {
